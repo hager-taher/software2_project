@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const Product = require("../../products");
-const products = require("../../products");
+const Product = require("../../models/products");
 
 router.get("/home", async (req, res) => {
   if (!req.session.user) {
@@ -40,6 +39,10 @@ router.get("/discount", async (req, res) => {
     user: req.session.user,
     products: products,
   });
-})
+});
+
+router.get("/auth", (req, res) => {
+  res.render("../views/auth.ejs");
+});
 
 module.exports = router;

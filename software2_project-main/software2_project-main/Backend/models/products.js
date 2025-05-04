@@ -23,8 +23,8 @@ const product = db.Schema({
   },
   discount: {
     type: Number,
-    default: 0
-  }
+    default: 0,
+  },
 });
 
-module.exports = db.model("product", product);
+module.exports = db.model("products", product);

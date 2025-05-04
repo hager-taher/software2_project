@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const products = require('../../products.js');
+const products = require('../../models/products.js');
 router.put('/:id', async (req, res) => {
     const productId = req.params.id
     const product = await products.updateOne({
