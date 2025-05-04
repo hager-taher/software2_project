@@ -1,33 +1,41 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const userRouter = require('./routers/users.router');
-const dotenv = require('dotenv');
-dotenv.config();
-
+const express = require("express");
 const app = express();
+const mongoose = require("mongoose");
+const session = require("express-session");
+require("dotenv/config");
+
+app.set("view-engine", "ejs");
+app.use(express.static("public"));
+
+mongoose
+  .connect(process.env.connect_DB)
+  .then(() => console.log("connected..."))
+  .catch((e) => console.log(e));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  session({
+    secret: "secret_key",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  })
+);
 
-const url = process.env.MONGO_DB_URI;
+app.use("/api/users", require("./routers/usersApi/getRoutes"));
+app.use("/api/users", require("./routers/usersApi/postRoutes"));
+app.use("/api/users", require("./routers/usersApi/putRoutes"));
+app.use("/api/users", require("./routers/usersApi/deleteRoutes"));
 
-const connectToDB = async () => {
-  try {
-    mongoose.set('strictQuery', false);
-    mongoose.connect(url);
-    console.log('connected to mongo db');
-  } catch (err) {
-    console.log("can't connect to database:", err);
-    process.exit();
-  }
-};
+//app.use("/api/products", require("./routes/productsApi/getRoutes"));
+//app.use("/api/products", require("./routes/productsApi/postRoutes"));
+//app.use("/api/products", require("./routes/productsApi/putRoutes"));
+//app.use("/api/products", require("./routes/productsApi/deleteRoutes"));
 
-connectToDB();
+app.use("/", require("./routers/authRoutes/authRoutes"));
+//app.use("/", require("./routers/view/viewRoutes"));
 
-app.use('/', userRouter);
+//app.use("/api/discount", require("./routes/discountApi/applyDiscount"));
+//app.use("/api/discount", require("./routes/discountApi/removeDiscount"));
 
-app.use(function (req, res) {
-  res.status(404).send({ url: req.originalUrl + ' not found' });
-});
-
-app.listen(8018, () => {
-  console.log(`Server is running on port 8018`);
-});
+app.listen(8018);

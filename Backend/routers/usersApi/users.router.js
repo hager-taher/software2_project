@@ -10,7 +10,7 @@
 // module.exports =router
 
 const express = require('express');
-const userController = require('../controllers/users.controller');
+const userController = require('../../controllers/users.controller');
 
 const router = express.Router();
 
