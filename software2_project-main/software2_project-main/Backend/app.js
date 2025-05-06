@@ -2,6 +2,11 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const session = require("express-session");
+const productRoutes = require('./routes/product.route');
+const userRoutes = require('./routes/user.route');
+const discountRoutes = require('./routes/discount.route');
+const authRoutes = require('./routes/auth.route');
+const pageRoutes = require('./routes/pages.route');
 require("dotenv").config();
 console.log("Mongo URI:", process.env.connect_DB);
 
@@ -24,21 +29,30 @@ app.use(
   })
 );
 
-app.use("/api/users", require("./routers/usersApi/getRoutes"));
-app.use("/api/users", require("./routers/usersApi/postRoutes"));
-app.use("/api/users", require("./routers/usersApi/putRoutes"));
-app.use("/api/users", require("./routers/usersApi/deleteRoutes"));
+//app.use("/api/users", require("./routers/usersApi/getRoutes"));
+//app.use("/api/users", require("./routers/usersApi/postRoutes"));
+//app.use("/api/users", require("./routers/usersApi/putRoutes"));
+//app.use("/api/users", require("./routers/usersApi/deleteRoutes"));
 
-app.use("/api/products", require("./routers/productsApi/getRoutes"));
-app.use("/api/products", require("./routers/productsApi/postRoutes"));
-app.use("/api/products", require("./routers/productsApi/putRoutes"));
-app.use("/api/products", require("./routers/productsApi/deleteRoutes"));
+//app.use("/api/products", require("./routers/productsApi/getRoutes"));
+//app.use("/api/products", require("./routers/productsApi/postRoutes"));
+//app.use("/api/products", require("./routers/productsApi/putRoutes"));
+//app.use("/api/products", require("./routers/productsApi/deleteRoutes"));
 
-app.use("/", require("./routers/authRoutes/authRoutes"));
-app.use("/", require("./routers/view/viewRoutes"));
+//app.use("/", require("./routers/authRoutes/authRoutes"));
+//app.use("/", require("./routers/view/viewRoutes"));
 
 //app.use("/api/discount", require("./routes/discountApi/applyDiscount"));
 //app.use("/api/discount", require("./routes/discountApi/removeDiscount"));
+app.use('/api', productRoutes);
+
+app.use('/api', userRoutes);
+
+app.use('/api', discountRoutes);
+
+app.use('/', authRoutes);
+
+app.use('/', pageRoutes);
 
 app.listen(process.env.PORT, () => {
 
