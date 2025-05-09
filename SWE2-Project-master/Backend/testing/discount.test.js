@@ -3,7 +3,7 @@ const app = require('../app')
 const productModel = require('../models/product')
 const request = require('supertest')
 
-const {showDiscount, calculateNewPrice} = require('../helpers/discount')
+const {showDiscount, calculateNewPrice ,getDiscountAmount } = require('../helpers/discount')
 
 require('dotenv').config()
 
@@ -49,4 +49,10 @@ describe('displaying discount', () => {
     it ('should return 80.00 when the discount is 20 and the price is 100', () => {
         expect(calculateNewPrice(100, 20)).toBe("80.00");
     })
+    it('should throw error if price is negative', () => {
+        expect(() => calculateNewPrice(-100, 20)).toThrow('Price cannot be negative');
+    });
 })
+it('should throw matching error snapshot', () => {
+    expect(() => getDiscountAmount(-100, 10)).toThrowErrorMatchingSnapshot();
+});

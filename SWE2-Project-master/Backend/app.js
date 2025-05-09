@@ -2,24 +2,25 @@ const express = require("express");
 const app = express();
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
-const mongoose = require("mongoose");
+
+//const rateLimiter = require('./middlewares/rateLimiter');
+//app.use('/api/products', rateLimiter);
+
+//const logger = require('./utils/logger');
+//app.use(logger);
+
 const session = require("express-session");
 const productRoutes = require('./routes/product.route');
 const userRoutes = require('./routes/user.route');
 const discountRoutes = require('./routes/discount.route');
 const authRoutes = require('./routes/auth.route');
 const pageRoutes = require('./routes/pages.route');
-require("dotenv").config();
-console.log("Mongo URI:", process.env.connect_DB);
+
+//console.log("Mongo URI:", process.env.connect_DB);
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-app.use(express.static("views"));
-
-mongoose
-  .connect(process.env.connect_DB)
-  .then(() => console.log("connected..."))
-  .catch((e) => console.log(e));
+//app.use(express.static("views"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
@@ -41,15 +42,15 @@ app.use('/', authRoutes);
 
 app.use('/', pageRoutes);
 
- app.get('/', (req, res) => {
+ /*app.get('/', (req, res) => {
    res.send('Product deleted successfully'); // or res.render('index') if you have a view
- });
+ });*/
 
-app.listen(process.env.PORT, () => {
+/*app.listen(process.env.PORT, () => {
 
   console.log(`Server is running on port ${process.env.PORT}`);
 }
-);
+);*/
 
 
 // const express = require("express");
@@ -100,5 +101,5 @@ app.listen(process.env.PORT, () => {
 
 // app.use('/', pageRoutes);
 
-// module.exports = app;
+ module.exports = app;
 

@@ -1,4 +1,6 @@
 const express = require('express')
+//const authenticate = require('../middlewares/authenticate');
+const authorize = require('../middlewares/authorize');
 
 const {
     getProducts,
@@ -13,11 +15,11 @@ const router = express.Router();
 router.get('/products', getProducts)
 
 router.get('/products/:id', getProductById)
+ // محدش يقدر يضيف ولا يعدل ولا يحذف غير الادمن 
+router.post('/products',authorize, createProduct) 
 
-router.post('/products', createProduct)
+router.put('/products/:id',authorize, updateProduct)
 
-router.put('/products/:id', updateProduct)
-
-router.delete('/products/:id', deleteProduct)
+router.delete('/products/:id', authorize,deleteProduct)
 
 module.exports = router;

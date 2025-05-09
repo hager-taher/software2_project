@@ -3,7 +3,7 @@ const { showDiscount, calculateNewPrice } = require('../helpers/discount');
 
 const homePage = async (req, res) => {
   if (!req.session.user) {
-    return res.redirect("/auth");
+    return res.redirect("/auth");    
   }
 
   if (req.session.user.isAdmin == true) {
