@@ -10,6 +10,7 @@ require("dotenv").config(
 beforeAll(async () => {
   if (mongoose.connection.readyState === 0) {
     await mongoose.connect(process.env.connect_DB);
+    console.log("MongoDB Connection State:", mongoose.connection.readyState);
     console.log(process.env.connect_DB);
     console.log(process.env.PORT);
   }
