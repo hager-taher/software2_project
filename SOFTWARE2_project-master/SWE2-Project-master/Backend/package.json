@@ -4,7 +4,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "jest authanticateSec authenticate authValidation auth dbUppercaseTest discount pages product rateLimiter user --coverage"
+    "test": "jest --coverage"
   },
   "keywords": [],
   "author": "",
@@ -16,15 +16,19 @@
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "express-mongo-sanitize": "^2.2.0",
     "express-rate-limit": "^7.5.0",
     "express-session": "^1.18.1",
     "express-validator": "^7.2.1",
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "method-override": "^3.0.0",
+    "mongo-sanitize": "^1.1.0",
     "mongoose": "^8.14.1",
     "morgan": "^1.10.0",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "xss": "^1.0.15",
+    "xss-clean": "^0.1.4"
   },
   "devDependencies": {
     "jest": "^29.7.0",

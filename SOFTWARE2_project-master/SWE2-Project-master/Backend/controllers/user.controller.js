@@ -48,7 +48,7 @@ const createUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  try {
+
     const userId = req.params.id;
     const {
       firstName,
@@ -86,13 +86,12 @@ const updateUser = async (req, res) => {
     }
 
     res.status(200).json(user);
-  } catch (error) {
-    res.status(500).json(error);
-  }
+ 
+
 };
 
 const deleteUser = async (req, res) => {
-  try {
+ 
     const userId = req.params.id;
     const result = await Users.deleteOne({ _id: userId });
 
@@ -101,9 +100,6 @@ const deleteUser = async (req, res) => {
     }
 
     res.status(200).json({ message: "User deleted" });
-  } catch (error) {
-    res.status(500).json(error);
-  }
 };
 
 module.exports = {
