@@ -4,7 +4,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "jest  --coverage"
+    "test": "jest authanticateSec authenticate authValidation auth dbUppercaseTest discount pages product rateLimiter user --coverage"
   },
   "keywords": [],
   "author": "",

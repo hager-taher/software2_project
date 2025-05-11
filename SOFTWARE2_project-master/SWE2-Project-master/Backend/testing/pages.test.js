@@ -27,6 +27,12 @@ describe("navigate to login page", () => {
     expect(res.status).toBe(200);
   });
 });
+describe("navigate to authentication page", () => {
+  it("should navigate to authentication page", async () => {
+    const res = await request(app).get("/auth");
+    expect(res.status).toBe(200);
+  });
+});
 
 describe("navigate to registration page", () => {
   it("should navigate to registration page", async () => {
@@ -78,6 +84,7 @@ describe("navigation of admin and normal users", () => {
       const res = await agent.get("/home");
       expect(res.status).toBe(200);
     }),
+    
     it("should fail to load the products in the home page.", async () => {
       await mongoose.connection.close();
       const res = await agent.get("/home");
