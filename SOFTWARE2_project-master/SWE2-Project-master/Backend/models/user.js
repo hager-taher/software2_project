@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -25,13 +25,14 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-  },confirmPassword:{
+  },
+  confirmPassword: {
     type: String,
     required: true,
   },
   gender: {
     type: String,
-    enum: ['male', 'female'],
+    enum: ["male", "female"],
     required: true,
   },
   isAdmin: {
@@ -43,7 +44,7 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     required: false,
     default: false,
-},
+  },
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model("User", userSchema);

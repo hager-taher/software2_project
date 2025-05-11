@@ -49,6 +49,35 @@ describe('register', () => {
         expect(res.status).toBe(302);  // إعادة التوجيه في حال وجود المستخدم بالفعل
         expect(res.headers.location).toContain("/register?error=User+already+exists");
     });
+    it('should redirect with error when required fields are missing', async () => {
+    const res = await request(app).post('/register').send({
+        // Missing multiple required fields
+        firstName: "Test",
+        lastName: "test9@example.com"
+        // no lastName, mobile, gender, username, password, confirmPassword
+    });
+
+    expect(res.status).toBe(400);
+expect(res.body.errors[0].msg).toBe('There is problem in email!!'); // أو أي رسالة متوقعة من الفاليديشن
+
+});
+it('should redirect with error when passwords do not match', async () => {
+    const res = await request(app).post('/register').send({
+        firstName: "Test",
+        lastName: "User",
+        mobile: "9999999999",
+        gender: "male",
+        username: "testuser",
+        email: "test8@example.com",
+        password: "password123",
+        confirmPassword: "password456", // mismatch
+        isAdmin:true
+    });
+
+    expect(res.status).toBe(302);
+    expect(res.headers.location).toBe('/register?error=Passwords+do+not+match');
+});
+
 });
 
 describe('login', () => {

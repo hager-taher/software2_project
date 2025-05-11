@@ -14,7 +14,7 @@ describe('Auth Routes', () => {
         });
 
       expect(res.statusCode).toBe(400);
-      expect(res.body.errors[0].msg).toBe('Email is invalid');
+      expect(res.body.errors[0].msg).toBe('There is problem in email!!');
     });
 
     it('should return 400 if password is too short', async () => {
