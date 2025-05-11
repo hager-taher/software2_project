@@ -1,26 +1,25 @@
 const express = require("express");
 const app = express();
-const methodOverride = require('method-override');
-app.use(methodOverride('_method'));
+const methodOverride = require("method-override");
+app.use(methodOverride("_method"));
 
 //const rateLimiter = require('../Backend/testing/rateLimiter.test');
 //app.use('/api/products', rateLimiter);
 
 //const rateLimiter = require('./testing/rateLimiter.test');
 //app.use('/api/products', rateLimiter);
-const rateLimiter = require('./middlewares/rateLimiter');
-app.use('/auth', rateLimiter);
+const rateLimiter = require("./middlewares/rateLimiter");
+app.use("/auth", rateLimiter);
 
-
-const logger = require('./utils/logger');
+const logger = require("./utils/logger");
 app.use(logger);
 
 const session = require("express-session");
-const productRoutes = require('./routes/product.route');
-const userRoutes = require('./routes/user.route');
-const discountRoutes = require('./routes/discount.route');
-const authRoutes = require('./routes/auth.route');
-const pageRoutes = require('./routes/pages.route');
+const productRoutes = require("./routes/product.route");
+const userRoutes = require("./routes/user.route");
+const discountRoutes = require("./routes/discount.route");
+const authRoutes = require("./routes/auth.route");
+const pageRoutes = require("./routes/pages.route");
 
 //console.log("Mongo URI:", process.env.connect_DB);
 
@@ -38,17 +37,17 @@ app.use(
   })
 );
 
-app.use('/api', productRoutes);
+app.use("/api", productRoutes);
 
-app.use('/api', userRoutes);
+app.use("/api", userRoutes);
 
-app.use('/api', discountRoutes);
+app.use("/api", discountRoutes);
 
-app.use('/', authRoutes);
+app.use("/", authRoutes);
 
-app.use('/', pageRoutes);
+app.use("/", pageRoutes);
 
- /*app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
    res.send('Product deleted successfully'); // or res.render('index') if you have a view
  });*/
 
@@ -57,7 +56,6 @@ app.use('/', pageRoutes);
   console.log(`Server is running on port ${process.env.PORT}`);
 }
 );*/
-
 
 // const express = require("express");
 // const app = express();
@@ -105,11 +103,10 @@ app.use('/', pageRoutes);
 
 // app.use('/', authRoutes);
 
- app.use('/', pageRoutes);
-const isAuthenticated = require('./middlewares/authenticate');
-app.get('/protected', isAuthenticated, (req, res) => {
-    res.status(200).json({ message: 'Access granted' });
+app.use("/", pageRoutes);
+const isAuthenticated = require("./middlewares/authenticate");
+app.get("/protected", isAuthenticated, (req, res) => {
+  res.status(200).json({ message: "Access granted" });
 });
 
- module.exports = app;
-
+module.exports = app;

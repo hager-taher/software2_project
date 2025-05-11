@@ -25,6 +25,11 @@ const product = db.Schema({
     type: Number,
     default: 0,
   },
+   isTest: {
+    type: Boolean,
+    required: false,
+    default: false,
+  }
 });
 
 module.exports = db.model("products", product);
