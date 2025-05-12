@@ -103,10 +103,10 @@ app.use("/", pageRoutes);
 
 // app.use('/', authRoutes);
 
-app.use("/", pageRoutes);
+/*app.use("/", pageRoutes);
 const isAuthenticated = require("./middlewares/authenticate");
 app.get("/protected", isAuthenticated, (req, res) => {
   res.status(200).json({ message: "Access granted" });
-});
+});*/
 
 module.exports = app;

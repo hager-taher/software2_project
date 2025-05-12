@@ -74,7 +74,7 @@
       <div class="product__grid">
         <% products.forEach(product => { %>
           <div class="product__card">
-            <h2><%= product.title %></h2>
+            <h2><%= convertToUppercase(product.title) %></h2>
             <% if(showDiscount(product.discount) > 0) { %>
               <h4 style="color: red;">Discount: <%= product.discount %>%</h4>
               <p>$<%= calculateNewPrice(product.price, product.discount) %></p>

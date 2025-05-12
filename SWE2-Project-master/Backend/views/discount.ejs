@@ -50,7 +50,7 @@
 
                 <div class="product-details">
                     <h3 class="product-title">
-                        <%= product.title %>
+                        <%= convertToUppercase(product.title) %>
                     </h3>
                     <% if (showDiscount(product.discount) > 0) { %>
                         <p class="product-discount">Discount: <%= product.discount %>%</p>
