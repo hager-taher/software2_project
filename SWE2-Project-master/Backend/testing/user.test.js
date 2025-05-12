@@ -141,7 +141,7 @@ describe("delete a user", () => {
       mobile: "999999999",
       gender: "male",
       username: "test3",
-      email: "test3@gmail.com",
+      email: "test8@gmail.com",
       password: "505050",
       confirmPassword: "505050",
       isTest: true,
