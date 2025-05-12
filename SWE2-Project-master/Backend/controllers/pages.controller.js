@@ -21,6 +21,10 @@ const homePage = async (req, res) => {
   res.render("../views/home.ejs", {
     user: req.session.user,
     products: products,
+    showDiscount,
+    calculateNewPrice,
+    getDiscountAmount,
+    convertToUppercase,
   });
 };
 

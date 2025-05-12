@@ -75,9 +75,11 @@
         <% products.forEach(product => { %>
           <div class="product__card">
             <h2><%= product.title %></h2>
-            <% if (product.discount > 0) { %>
+            <% if(showDiscount(product.discount) > 0) { %>
               <h4 style="color: red;">Discount: <%= product.discount %>%</h4>
-              <p>$<%= (product.price * (1 - product.discount / 100)).toFixed(2) %></p>
+              <p>$<%= calculateNewPrice(product.price, product.discount) %></p>
+              <p  class="discount-amount">  You Saved : <%= getDiscountAmount(product.price, product.discount) %> EGP !!!</p>
+                          
             <% } else { %>
               <h4>$<%= product.price %></h4>
             <% } %>
