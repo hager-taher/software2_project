@@ -111,7 +111,7 @@ describe("update a user", () => {
         mobile: "9999999999",
         gender: "male",
         username: "test",
-        email: "user9@gmail.com",
+        email: "user10@gmail.com",
         password: "505050",
         confirmPassword: "505050",
         isTest: true,
